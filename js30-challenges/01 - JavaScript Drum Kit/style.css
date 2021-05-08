@@ -30,6 +30,7 @@ body,html {
   color: white;
   background: rgba(0,0,0,0.4);
   text-shadow: 0 0 .5rem black;
+  cursor: pointer;
 }
 
 .playing {
@@ -41,6 +42,11 @@ body,html {
 kbd {
   display: block;
   font-size: 4rem;
+  pointer-events: none;
+}
+
+span{
+   pointer-events: none;
 }
 
 .sound {
