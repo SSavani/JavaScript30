@@ -1,0 +1,13 @@
+body {
+   background-image: url(https://source.unsplash.com/GnVBceTo6xw/1600x1000);
+   background-size: cover;
+   background-color: wheat;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   font-family: "Lucida Sans", "Lucida Sans Regular";
+   font-size: x-large;
+   font-weight: bolder;
+   color: rgb(255, 255, 255);
+}
