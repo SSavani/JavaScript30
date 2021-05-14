@@ -1,6 +1,6 @@
 body {
    background-image: url(https://source.unsplash.com/5IHz5WhosQE/1600x1000);
-   background-image: contain;
+   background-size: cover;
    background-color: wheat;
    display: flex;
    justify-content: center;
