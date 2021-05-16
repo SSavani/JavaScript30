@@ -1,0 +1,14 @@
+body{
+   background: url(https://source.unsplash.com/1_CMoFsPfso/1600x1000);
+   background-size: cover;
+   background-repeat: no-repeat;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+}
+p{
+   font-size: 25px;
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   color: rgb(0, 0, 0);
+}
