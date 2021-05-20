@@ -1,0 +1,28 @@
+body {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background: url(./images/chalkboard.jpg);
+}
+
+div {
+   font-family: "papyrus";
+   font-size: 4rem;
+   font-weight: bolder;
+   color: rgb(255, 73, 7);
+   display: flex;
+   align-items: center;
+   letter-spacing: 2px;
+}
+
+p {
+   font-family: "papyrus";
+   letter-spacing: 2px;
+   font-size: 2rem;
+   font-weight: bolder;
+   color: rgb(255, 176, 7);
+   display: flex;
+   align-items: center;
+}
