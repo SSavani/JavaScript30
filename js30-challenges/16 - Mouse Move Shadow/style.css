@@ -1,0 +1,28 @@
+html {
+   background: url(./images/dark-wood.jpg);
+   color: black;
+   font-family: sans-serif;
+}
+
+body {
+   margin: 0;
+}
+
+.hero {
+   min-height: 94vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: black;
+}
+
+h1 {
+   text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+   font-size: 100px;
+}
+p {
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   color: rgba(54, 54, 54, 0.63);
+}
