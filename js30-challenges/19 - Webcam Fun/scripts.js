@@ -4,6 +4,12 @@ const ctx = canvas.getContext("2d");
 const strip = document.querySelector(".strip");
 const snap = document.querySelector(".snap");
 
+const takePhotoBtn = document.querySelector(".takePhoto");
+const redEffectBtn = document.querySelector(".redEffect");
+const rgbSplitBtn = document.querySelector(".rgbSplit");
+const grayScaleBtn = document.querySelector(".grayScale");
+const chromaKeyBtn = document.querySelector(".chromaKey");
+
 function getVideo() {
    // navigator.getUserMedia =
    //    navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -25,7 +31,12 @@ function paintToCansvas() {
    canvas.width = width;
    canvas.height = height;
 
-   return setInterval(() => {
+   let redEffect = false;
+   let rgbSplitEffect = false;
+   let grayScaleEffect = false;
+   let chromaKeyEffect = false;
+
+   setInterval(() => {
       ctx.drawImage(video, 0, 0, width, height);
       //take pixels from canvas
       let pixels = ctx.getImageData(0, 0, width, height);
@@ -33,16 +44,63 @@ function paintToCansvas() {
       //change them
       // pixels = redEffect(pixels);
       // pixels = rgbSplit(pixels);
-      pixels = greenScreen(pixels);
+      if (redEffect) {
+         pixels = redEffectFn(pixels);
+      }
+      if (rgbSplitEffect) {
+         pixels = rgbSplit(pixels);
+      }
+      if (grayScaleEffect) {
+         pixels = grayScale(pixels);
+      }
+      if (chromaKeyEffect) {
+         pixels = chromaKey(pixels);
+      }
 
       // ctx.globalAlpha = 0.1;
 
       //put them back into canvas
       ctx.putImageData(pixels, 0, 0);
    }, 16);
+
+   chromaKeyBtn.addEventListener("click", () => (chromaKeyEffect = !chromaKeyEffect));
+   chromaKeyBtn.addEventListener("click", () => {
+      if (chromaKeyBtn.classList.contains("enabled")) {
+         chromaKeyBtn.classList.remove("enabled");
+      } else {
+         chromaKeyBtn.classList.add("enabled");
+      }
+   });
+
+   rgbSplitBtn.addEventListener("click", () => (rgbSplitEffect = !rgbSplitEffect));
+   rgbSplitBtn.addEventListener("click", () => {
+      if (rgbSplitBtn.classList.contains("enabled")) {
+         rgbSplitBtn.classList.remove("enabled");
+      } else {
+         rgbSplitBtn.classList.add("enabled");
+      }
+   });
+
+   grayScaleBtn.addEventListener("click", () => (grayScaleEffect = !grayScaleEffect));
+   grayScaleBtn.addEventListener("click", () => {
+      if (grayScaleBtn.classList.contains("enabled")) {
+         grayScaleBtn.classList.remove("enabled");
+      } else {
+         grayScaleBtn.classList.add("enabled");
+      }
+   });
+
+   redEffectBtn.addEventListener("click", () => (redEffect = !redEffect));
+   redEffectBtn.addEventListener("click", () => {
+      if (redEffectBtn.classList.contains("enabled")) {
+         redEffectBtn.classList.remove("enabled");
+      } else {
+         redEffectBtn.classList.add("enabled");
+      }
+   });
 }
 
-function redEffect(pixels) {
+function redEffectFn(pixels) {
    for (let i = 0; i < pixels.data.length; i += 4) {
       //r
       pixels.data[i + 0] = pixels.data[i + 0] + 50;
@@ -57,7 +115,7 @@ function redEffect(pixels) {
 function rgbSplit(pixels) {
    for (let i = 0; i < pixels.data.length; i += 4) {
       //r
-      pixels.data[i - 150] = pixels.data[i + 0];
+      pixels.data[i - 100] = pixels.data[i + 0];
       //g
       pixels.data[i + 500] = pixels.data[i + 1];
       //b
@@ -66,14 +124,24 @@ function rgbSplit(pixels) {
    return pixels;
 }
 
-function greenScreen(pixels) {
+function grayScale(pixels) {
+   for (let i = 0; i < pixels.data.length; i += 4) {
+      let grayscale = pixels.data[i] * 0.3 + pixels.data[i + 1] * 0.59 + pixels.data[i + 2] * 0.11;
+      pixels.data[i] = grayscale;
+      pixels.data[i + 1] = grayscale;
+      pixels.data[i + 2] = grayscale;
+   }
+   return pixels;
+}
+
+function chromaKey(pixels) {
    const levels = {};
 
    document.querySelectorAll(".rgb input").forEach((input) => {
       levels[input.name] = input.value;
    });
-   console.log(levels)
-   for (i = 0; i < pixels.data.length; i = i + 4) {
+
+   for (i = 0; i < pixels.data.length; i += 4) {
       red = pixels.data[i + 0];
       green = pixels.data[i + 1];
       blue = pixels.data[i + 2];
@@ -95,14 +163,17 @@ function greenScreen(pixels) {
    return pixels;
 }
 
-function takePhoto() {
+function playSound() {
    snap.currentTime = 0;
    snap.play();
+}
 
+function takePhoto() {
+   playSound();
    const data = canvas.toDataURL("image/jpeg"); //gives a base64 text based data of the canvas feed.
    const link = document.createElement("a");
    link.href = data;
-   link.setAttribute("download", "handsome");
+   link.setAttribute("download", "img");
    link.innerHTML = `<img src="${data}" alt="Handsome">`;
    strip.insertBefore(link, strip.firstChild);
 }
@@ -110,3 +181,4 @@ function takePhoto() {
 getVideo();
 
 video.addEventListener("canplay", paintToCansvas);
+takePhotoBtn.addEventListener("click", takePhoto);
