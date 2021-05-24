@@ -4,21 +4,26 @@ html {
 
 body {
    background: #ffc600;
-   font-family: "helvetica neue";
+   background: url(./images/bg.png);
+   font-family: monospace, "helvetica neue";
    font-weight: 200;
    font-size: 20px;
 }
 
-header{
+header {
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
 }
-h1{
+
+h1 {
    margin: 50px 10px 10px 10px;
+   color: snow;
 }
-header p{
+
+header p {
+   color: snow;
    margin: 10px;
 }
 
