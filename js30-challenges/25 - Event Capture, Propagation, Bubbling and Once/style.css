@@ -1,0 +1,58 @@
+html {
+   box-sizing: border-box;
+   background-color: whitesmoke;
+   background: url(./images/subway-lines.png);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   margin: 50px;
+   font-weight: bolder;
+   font-family: monospace;
+}
+
+*,
+*:before,
+*:after {
+   box-sizing: inherit;
+}
+
+div {
+   width: 100%;
+   padding: 100px;
+   color: navy;
+   border-radius: 15px;
+   cursor: pointer;
+}
+
+.one {
+   background: slategray;
+}
+
+.two {
+   background: seashell;
+}
+
+.three {
+   background: sandybrown;
+}
+
+h1 {
+   margin: 10px;
+   padding: 10px;
+   color: brown;
+   background-color: antiquewhite;
+   border-radius: 15px;
+}
+
+button {
+   font-weight: bolder;
+   font-family: monospace;
+   margin-top: 10px;
+   min-width: 9vw;
+   min-height: 5vh;
+   background-color: antiquewhite;
+   color: brown;
+   border-radius: 15px;
+   cursor: pointer;
+}
