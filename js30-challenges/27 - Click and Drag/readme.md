@@ -1,3 +1,3 @@
-# 27 - Click N Drag
+# 27 - Click N Drag to Scroll
 
-![Click N Drag](images/screenshot.PNG)
+![Click N Drag to Scroll](images/screenshot.PNG)
