@@ -1,8 +1,11 @@
 const timerDisplay = document.querySelector(".display__time-left");
 const endTime = document.querySelector(".display__end-time");
 const buttons = document.querySelectorAll("[data-time]");
+const pauseBtn = document.querySelector(".pause");
 
 let countdown;
+let globalSecondsLeft;
+let isPaused = false;
 
 function timer(seconds) {
    //clear existing timers
@@ -10,11 +13,13 @@ function timer(seconds) {
 
    let now = Date.now();
    let then = now + seconds * 1000;
+
    displayTimeLeft(seconds);
    displayEndTime(then);
 
    countdown = setInterval(() => {
       let secondsLeft = Math.round((then - Date.now()) / 1000);
+      globalSecondsLeft = secondsLeft;
       //check if it interval need to stop
       if (secondsLeft < 0) {
          clearInterval(countdown);
@@ -58,6 +63,19 @@ function displayEndTime(timestamp) {
 function startTimer() {
    let seconds = parseInt(this.dataset.time);
    timer(seconds);
+   pauseBtn.textContent = "Pause";
+}
+
+function pauseTimer() {
+   clearInterval(countdown);
+   pauseBtn.textContent = "Resume";
+   isPaused = !isPaused;
+}
+
+function resumeTimer() {
+   timer(globalSecondsLeft);
+   isPaused = !isPaused;
+   pauseBtn.textContent = "Pause";
 }
 
 buttons.forEach((button) => button.addEventListener("click", startTimer));
@@ -67,3 +85,5 @@ document.customForm.addEventListener("submit", function (e) {
    timer(mins * 60);
    this.reset();
 });
+
+pauseBtn.addEventListener("click", () => (isPaused ? resumeTimer() : pauseTimer()));

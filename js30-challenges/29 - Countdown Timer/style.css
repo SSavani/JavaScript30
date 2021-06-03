@@ -91,3 +91,28 @@ input {
 input::placeholder {
    color: white;
 }
+
+div.pause_resume {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.pause {
+   padding: 10px;
+   margin: 0px 50px;
+   background: none;
+   border: 0;
+   cursor: pointer;
+   color: white;
+   font-size: 2rem;
+   text-transform: uppercase;
+   padding: 1rem;
+   font-family: "Inconsolata", monospace;
+   border-radius: 5px;
+}
+
+.pause:hover {
+   background: rgba(0, 0, 0, 0.2);
+   outline: 0;
+}
