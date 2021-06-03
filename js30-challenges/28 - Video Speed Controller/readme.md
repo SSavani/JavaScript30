@@ -1,3 +1,3 @@
-# 27 - Click N Drag
+# 28 - Video Speed Controller
 
-![Click N Drag](images/screenshot.PNG)
+![Video Speed Controller](images/screenshot.PNG)
