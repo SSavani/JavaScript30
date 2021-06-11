@@ -1,3 +1,3 @@
 # 01 - JavaScript Drum Kit
 
-![DrumKit](images/screenshot.png)
+![DrumKit](images/screenshot.PNG)
